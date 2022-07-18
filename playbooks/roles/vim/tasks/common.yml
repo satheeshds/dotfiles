@@ -1,0 +1,49 @@
+---
+- name: Setup neovim virtualenv
+  pip:
+    name:
+      - pynvim
+      - neovim-remote
+    virtualenv: ~/.virtualenvs/nvim
+    virtualenv_command: /usr/bin/python3 -m venv
+- name: Symlink neovim remote
+  file:
+    src: ~/.virtualenvs/nvim/bin/nvr
+    dest: ~/bin/nvr
+    state: link
+- name: Checkout vim plugins
+  git:
+    repo: https://github.com/{{ item }}
+    dest: ~/.config/nvim/pack/plugins/start/{{ item | basename }}
+  loop:
+    - junegunn/gv.vim
+    - junegunn/vim-easy-align
+    - tpope/vim-fugitive
+    - gpanders/editorconfig.nvim
+    - AndrewRadev/linediff.vim
+    - janko-m/vim-test
+    - phaazon/hop.nvim
+    - nvim-lua/plenary.nvim
+    - vim-scripts/dbext.vim
+    - jbyuki/venn.nvim
+    - jbyuki/one-small-step-for-vimkind
+- name: Checkout opt vim plugins
+  git:
+    repo: https://github.com/{{ item }}
+    dest: ~/.config/nvim/pack/plugins/opt/{{ item | basename }}
+  loop:
+    - nvim-treesitter/nvim-treesitter
+    - nvim-treesitter/playground
+    - hashivim/vim-terraform
+- name: Checkout vim dev plugins
+  git:
+    repo: https://github.com/{{ item }}
+    dest: ~/.config/nvim/pack/plugins/start/{{ item | basename }}
+    update: false
+  loop:
+    - mfussenegger/nvim-jdtls
+    - mfussenegger/nvim-fzy
+    - mfussenegger/nvim-lint
+    - mfussenegger/nvim-ts-hint-textobject
+- name: Update Remote Plugins
+  command: nvim +UpdateRemotePlugins +qa

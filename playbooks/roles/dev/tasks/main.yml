@@ -1,0 +1,10 @@
+---
+- name: Install dev packages
+  become: true
+  package:
+    state: present
+    name:
+      - jq
+      - fzf
+      - fzy
+      - htop

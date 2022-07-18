@@ -1,0 +1,17 @@
+---
+#- name: Install desktop essentials
+#  become: true
+#  package:
+#    state: present
+#    name:
+#      - openssh
+
+#- name: Install fonts
+#  become: true
+#  package:
+#    name:
+#      - noto-fonts
+#      - noto-fonts-emoji
+#      - ttf-roboto
+#      - ttf-hack
+

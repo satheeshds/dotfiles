@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  gather_facts: true
+  roles:
+    - vim
+    - jdks
+#    - lang-java
+#    - tree-sitter
+    - zsh-plugins

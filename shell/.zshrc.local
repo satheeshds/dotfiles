@@ -1,0 +1,60 @@
+export PATH=$PATH:$HOME/.local/share/npm/bin:$HOME/.luarocks/bin
+export KUBECONFIG=$HOME/.kube/config:$HOME/.kube/config_user
+export WINEDEBUG=-all
+export SDL_VIDEO_FULLSCREEN_DISPLAY=0
+export GPG_TTY=$(tty)
+export JAVA_HOME="$HOME/.local/jdks/jdk-18+36/"
+export GOPATH="$HOME/workspace/code/go"
+
+if [ -n "$NVIM" ]; then
+  export VISUAL="nvr -cc split --remote-wait"
+else
+  export VISUAL="v"
+fi
+export MANPAGER="$VISUAL +Man! -"
+export EDITOR=$VISUAL
+export SUDO_EDIT=$VISUAL
+alias vi=$VISUAL
+
+
+myoutube() {
+    mplayer -vo vaapi -cache 8192 -fs $(youtube-dl -g $1)
+}
+
+greph() {
+    history 0 | grep $1
+}
+
+
+share_internet() {
+    if [[ -z "$1" ]] then
+        echo "share_internet <dev with internet> <dev with clients>"
+        return 1
+    fi
+    if [[ -z "$2" ]] then
+        echo "share_internet <dev with internet> <dev with clients>"
+        return 1
+    fi
+    # share_internet from(dev with clients) to (dev with internet)
+    sudo sysctl net.ipv4.ip_forward=1
+    sudo iptables -t nat -A POSTROUTING -o $1 -j MASQUERADE
+    sudo iptables -A FORWARD -i $2 -o $1 -j ACCEPT
+}
+
+# kill all processes that use port $1
+portkill() {
+    lsof -i :$1 | tail -n +2 | awk '{ print $2 }' | xargs kill
+}
+
+clean_whiteboard() {
+    convert "$1" -morphology Convolve DoG:15,100,0 -negate -normalize -blur 0x1 -channel
+}
+
+update_mirrorlist() {
+    reflector -n 24 -c AT -c DE -f 10 -l 10 | sudo tee /etc/pacman.d/mirrorlist
+}
+
+
+mp42gif() {
+  ffmpeg -i "$1" -vf "fps=10,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 "$2"
+}

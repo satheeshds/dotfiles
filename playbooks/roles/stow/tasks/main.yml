@@ -1,0 +1,22 @@
+---
+- name: Gathering facts
+  gather_facts:
+- name: Install stow
+  become: true
+  package:
+    name: stow
+    state: present
+- name: Ensure folders exist
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - ~/.config/nvim
+    - ~/bin
+    - ~/apps
+    - ~/.zsh/completion
+    - ~/.zsh/plugins
+- name: Create symlinks
+  shell: stow shell vim git 
+  args:
+    chdir: ~/dotfiles

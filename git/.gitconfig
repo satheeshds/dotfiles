@@ -1,0 +1,115 @@
+[user]
+    name = Satheesh D S
+    email = davidsonsatheesh@gmail.com
+
+[core]
+    editor = vim
+    autocrlf = input
+    excludesfile = ~/.config/git/gitignore
+    attributesfile = ~/.config/git/gitattributes
+
+[advice]
+    statusHints = false
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+    algorithm = patience
+
+[github]
+    user = satheeshds
+
+[pull]
+    rebase = true
+
+[push]
+    default = current
+
+[rebase]
+    autosquash = true
+    autoStash = true
+
+[branch]
+    autoSetupRebase = always
+
+[rerere]
+    enabled = true
+
+[merge]
+    tool = vimdiff
+    conflictstyle = zdiff3
+    renamelimit = 20000
+
+[mergetool]
+    keepBackup = false
+
+[difftool]
+    prompt = false
+
+[diff]
+    tool = vimdiff
+    compactionHeuristic = true
+    colorMoved = default
+    wordDiff = color
+    algorithm = patience
+    context = 5
+
+[diff "image"]
+    textconv = identify
+
+[alias]
+    co = checkout
+    lg = log --color --graph \
+        --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
+        --abbrev-commit --
+    killbranches = !git branch --merged | grep -v '^*' \
+                   | grep -v master | xargs git branch -d 2> /dev/null
+    pr = !hub pull-request -b $(git branch | grep -v '^*' | awk '{print($1)}' | fzf)
+    prs = !hub pr list --format='%pC%i%Creset %au: %t %l %n ▸ %U%n%n' -o updated
+    fixup = !git commit --fixup $(git rev-parse HEAD)
+    serve = !git daemon --reuseaddr --verbose --base-path=. --export-all ./.git
+    br = !git ls-remote -h . | awk '{print(substr($NF, 12))}' | fzf | xargs git checkout
+    dsf = !git diff --color "$@" | diffr | less --tabs=4 -RFX
+    filter-commits = "!sh -c 'git log --pretty=format:\"%h - %an: %s\" $1 \
+        | fzf --no-sort \
+        | cut -d \" \" -f1 ' -"
+    cpl = "!sh -c 'git log --pretty=format:\"%h - %an: %s\" $1 \
+        | fzf --no-sort \
+        | cut -d \" \" -f1 \
+        | xargs git cherry-pick -x ' -"
+    reset-file = "!sh -c 'git status --short \
+        | fzf --no-sort \
+        | cut -d \" \" -f3 \
+        | xargs git checkout ' -"
+    fixup-to = !git commit --fixup=$(git filter-commits)
+    prune-all = !git remote | xargs -n1 git remote prune
+    co-recurse = !sh -c 'git checkout $1 && git submodule update --recursive' -
+    ls-branch = !git ls-tree --name-only -r
+    co-file = "!sh -c 'git ls-branch $1 \
+        | fzf \
+        | xargs git checkout $1 -- ' -"
+    cp-file = "!sh -c 'git ls-branch -r $1 \
+        | fzf \
+        | xargs -I {} git diff ..$1 -- {} \
+        | git apply -3 ' -"
+    b = branch --sort=authordate -vv
+    cr = "!sh -c 'git recent \
+        | fzf \
+        | xargs git checkout $1 ' -"
+    recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+    overview = log --all --since='2 weeks' --oneline --no-merges
+    recap = !git log --all --oneline --no-merges --author=$(git config user.email)
+    today = !git log --since=00:00:00 --all --oneline --no-merges --author=$(git config user.email)
+    st = !$EDITOR '+Gedit :'
+    fa = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
+
+[instaweb]
+    httpd = webrick
+
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+
+[url "git@github.com:"]
+    insteadOf = gh:
