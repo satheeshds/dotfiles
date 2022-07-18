@@ -4,6 +4,8 @@
   roles:
     - vim
     - jdks
+    - lang-lua
 #    - lang-java
 #    - tree-sitter
     - zsh-plugins
+    - tools

@@ -16,6 +16,7 @@
     repo: https://github.com/{{ item }}
     dest: ~/.config/nvim/pack/plugins/start/{{ item | basename }}
   loop:
+    - sainnhe/gruvbox-material
     - junegunn/gv.vim
     - junegunn/vim-easy-align
     - tpope/vim-fugitive
@@ -23,6 +24,7 @@
     - AndrewRadev/linediff.vim
     - janko-m/vim-test
     - phaazon/hop.nvim
+    - L3MON4D3/LuaSnip
     - nvim-lua/plenary.nvim
     - vim-scripts/dbext.vim
     - jbyuki/venn.nvim

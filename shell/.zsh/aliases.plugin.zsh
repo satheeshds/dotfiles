@@ -39,4 +39,4 @@ alias drop_caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
 # useful defaults
 alias rsync="ionice -c 3 rsync"
 alias iostat="iostat -mtx"
-
+alias a='alias'

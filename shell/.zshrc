@@ -20,3 +20,5 @@ source ~/.zsh/plugins/pure.zsh
 
 [ -f ~/.zshrc.secret ] && source ~/.zshrc.secret
 
+export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh

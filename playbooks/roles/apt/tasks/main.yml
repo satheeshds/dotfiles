@@ -1,0 +1,5 @@
+---
+- name: Install yaml-language-server
+  become: true
+  snap:
+    name: yaml-language-server

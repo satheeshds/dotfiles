@@ -5,6 +5,12 @@
     state: present
     name:
       - jq
+      - ripgrep
+      - hub
+      - luarocks
       - fzf
       - fzy
       - htop
+      - delve
+      - ninja-build
+      - g++

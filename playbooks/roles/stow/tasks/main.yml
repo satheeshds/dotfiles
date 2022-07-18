@@ -16,7 +16,20 @@
     - ~/apps
     - ~/.zsh/completion
     - ~/.zsh/plugins
-- name: Create symlinks
-  shell: stow shell vim git 
+- name: Create git symlinks
+  shell: stow -v -t ~ git 
   args:
     chdir: ~/dotfiles
+- name: Create shell symlinks
+  shell: stow -v -t ~ shell 
+  args:
+    chdir: ~/dotfiles
+- name: Create vim symlinks
+  shell: stow -v -t ~ vim 
+  args:
+    chdir: ~/dotfiles
+- name: Init dircolors
+  shell: dircolors -p >! ~/.dircolors
+  args:
+    executable: /usr/bin/zsh
+    creates: ~/.dircolors

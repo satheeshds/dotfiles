@@ -28,16 +28,6 @@ function M.setup()
   local fzy = require('fzy')
   fzy.format_bufname = format_bufname
   fzy.setup()
-  local set = vim.keymap.set
-  local silent = { silent = true }
-  local actions = fzy.actions
-  set('n', '<leader>fq', actions.quickfix, silent)
-  set('n', '<leader>fb', actions.buffers, silent)
-  set('n', '<leader>f/', actions.buf_lines, silent)
-  set('n', '<leader>ff', function() fzy.execute('fd', fzy.sinks.edit_file) end, silent)
-  set('n', '<leader>ft', function() fzy.try(actions.lsp_tags, actions.buf_tags) end, silent)
-  set('n', '<leader>fg', function() fzy.execute('git ls-files', fzy.sinks.edit_file) end, silent)
-  set('i', '<c-e>', emoji, silent)
   return fzy
 end
 
