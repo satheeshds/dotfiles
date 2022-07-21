@@ -4,6 +4,7 @@
   package:
     state: present
     name:
+      - build-essential
       - jq
       - ripgrep
       - hub
@@ -14,3 +15,6 @@
       - delve
       - ninja-build
       - g++
+      - openjdk-17-jre
+      - nodejs
+      - npm

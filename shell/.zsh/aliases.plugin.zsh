@@ -40,3 +40,12 @@ alias drop_caches='echo 3 | sudo tee /proc/sys/vm/drop_caches'
 alias rsync="ionice -c 3 rsync"
 alias iostat="iostat -mtx"
 alias a='alias'
+alias n='nvim'
+
+## github cli aliases
+alias pr='gh pr create --title $*'
+alias review='gh pr checkout $*'
+
+# docker compose
+alias dcd='docker compose down'
+alias dcu='docker up -d'

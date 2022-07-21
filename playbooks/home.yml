@@ -5,7 +5,7 @@
     - vim
     - jdks
     - lang-lua
-#    - lang-java
+    - lang-java
 #    - tree-sitter
     - zsh-plugins
     - tools

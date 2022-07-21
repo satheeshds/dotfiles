@@ -20,5 +20,7 @@ source ~/.zsh/plugins/pure.zsh
 
 [ -f ~/.zshrc.secret ] && source ~/.zshrc.secret
 
-export ZSH="$HOME/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
+#export ZSH="$HOME/.oh-my-zsh"
+#source $ZSH/oh-my-zsh.sh
+[ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
+eval "$(lua ~/.zsh/plugins/z.lua --init zsh once enhanced fzf)"

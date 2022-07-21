@@ -4,7 +4,7 @@ local cmd = {
 local config = {
   name = 'gradle-ls',
   cmd_env = {
-    JAVA_HOME = '/usr/lib/jvm/java-11-openjdk'
+    JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64'
   },
   settings = {
     gradleWrapperEnabled = true,

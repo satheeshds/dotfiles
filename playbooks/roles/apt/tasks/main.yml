@@ -3,3 +3,7 @@
   become: true
   snap:
     name: yaml-language-server
+- name: Install bash-language-server
+  become: true
+  snap:
+    name: bash-language-server

@@ -10,6 +10,28 @@
     dest: ~/apps/jol.jar
     checksum: sha256:95517ad43c185d8fba3bc3599278d31edc01a98233e07e2adafe63ad264b7e12
 
+- name: add gh-cli apt-key
+  become: true
+  apt_key:
+    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+    state: present
+    keyring: /usr/share/keyrings/githubcli-archive-keyring.gpg
+
+- name: add gh-cli apt repository
+  become: true
+  apt_repository:
+    repo: 'deb [arch=amd-64 signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main' 
+    state: present
+    filename: gh
+    update_cache: yes
+
+- name: install gh-cli
+  become: true
+  apt:
+    name: gh
+    state: present
+    update_cache: yes
+
 # vale from aur is outdated
 - name: Get vale
   unarchive:
