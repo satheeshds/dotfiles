@@ -39,3 +39,6 @@
     dest: ~/bin/
     remote_src: true
     creates: ~/bin/vale
+
+- name: Install Jekyll
+  command: gem install jekyll bundler

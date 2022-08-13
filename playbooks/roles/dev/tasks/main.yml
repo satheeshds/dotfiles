@@ -18,3 +18,5 @@
       - openjdk-17-jre
       - nodejs
       - npm
+      - ruby-full
+      - zlib1g-dev
