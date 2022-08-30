@@ -20,7 +20,7 @@
 - name: add gh-cli apt repository
   become: true
   apt_repository:
-    repo: 'deb [arch=amd-64 signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main' 
+    repo: 'deb [arch=amd64 signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main' 
     state: present
     filename: gh
     update_cache: yes
