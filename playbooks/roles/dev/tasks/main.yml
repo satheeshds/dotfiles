@@ -20,3 +20,11 @@
       - npm
       - ruby-full
       - zlib1g-dev
+
+- name: Install linters
+  become: true
+  ansible.builtin.package:
+    state: present
+    name:
+      - codespell
+      - shellcheck

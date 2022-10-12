@@ -117,6 +117,7 @@ function M.enable_lint()
   api.nvim_create_autocmd({'BufWritePost', 'BufEnter', 'BufLeave'}, {
     group = group,
     buffer = bufnr,
+--    pattern = {"*.lua"},
     callback = function()
       lint.try_lint()
     end

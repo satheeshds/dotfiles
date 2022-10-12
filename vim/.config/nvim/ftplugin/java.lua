@@ -47,10 +47,10 @@ config.settings = {
 --          name = "JavaSE-1.8",
 --          path = "/usr/lib/jvm/java-8-openjdk/",
 --        },
-        {
-          name = "JavaSE-11",
-          path = "/usr/lib/jvm/java-11-openjdk-amd64/",
-        },
+--       {
+--         name = "JavaSE-11",
+--         path = "/usr/lib/jvm/java-11-openjdk-amd64/",
+--       },
         {
           name = "JavaSE-16",
           path = home .. "/.local/jdks/jdk-16.0.1+9/",
@@ -58,6 +58,10 @@ config.settings = {
         {
           name = "JavaSE-17",
           path = home .. "/.local/jdks/jdk-17.0.2+8/",
+        },
+        {
+          name = "JavaSE-18",
+          path = home .. "/.local/jdks/jdk-18+36/",
         },
       }
     };
