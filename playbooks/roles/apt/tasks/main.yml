@@ -7,3 +7,36 @@
   become: true
   snap:
     name: bash-language-server
+
+- name: add brave browser apt-key
+  become: true
+  apt_key:
+    url: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+    state: present
+    keyring: /usr/share/keyrings/brave-browser-archive-keyring.gpg
+
+- name: add brave browser apt repository
+  become: true
+  apt_repository:
+    repo: 'deb [arch=amd64 signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main' 
+    state: present
+    filename: gh
+    update_cache: yes
+
+- name: install brave browser
+  become: true
+  apt:
+    name: brave-browser
+    state: present
+    update_cache: yes
+
+# vale from aur is outdated
+- name: Get vale
+  unarchive:
+    src: https://github.com/errata-ai/vale/releases/download/v2.20.0/vale_2.20.0_Linux_64-bit.tar.gz
+    dest: ~/bin/
+    remote_src: true
+    creates: ~/bin/vale
+
+- name: Install Jekyll
+  command: gem install jekyll bundler
