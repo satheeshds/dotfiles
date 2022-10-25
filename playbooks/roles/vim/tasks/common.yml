@@ -11,32 +11,46 @@
     src: ~/.virtualenvs/nvim/bin/nvr
     dest: ~/bin/nvr
     state: link
+
 - name: Checkout vim plugins
   git:
-    repo: https://github.com/{{ item }}
-    dest: ~/.config/nvim/pack/plugins/start/{{ item | basename }}
+    repo: https://github.com/{{ item.repo }}
+    dest: ~/.config/nvim/pack/plugins/{{ item.folder }}/{{ item.repo | basename }}
+  async: 120
+  poll: 0
+  register: git_clone
   loop:
-    - sainnhe/gruvbox-material
-    - junegunn/gv.vim
-    - junegunn/vim-easy-align
-    - tpope/vim-fugitive
-    - gpanders/editorconfig.nvim
-    - AndrewRadev/linediff.vim
-    - janko-m/vim-test
-    - phaazon/hop.nvim
-    - L3MON4D3/LuaSnip
-    - nvim-lua/plenary.nvim
-    - vim-scripts/dbext.vim
-    - jbyuki/venn.nvim
-    - jbyuki/one-small-step-for-vimkind
-- name: Checkout opt vim plugins
-  git:
-    repo: https://github.com/{{ item }}
-    dest: ~/.config/nvim/pack/plugins/opt/{{ item | basename }}
-  loop:
-    - nvim-treesitter/nvim-treesitter
-    - nvim-treesitter/playground
-    - hashivim/vim-terraform
+    - { folder: start, repo: junegunn/gv.vim }
+    - { folder: start, repo: junegunn/vim-easy-align }
+    - { folder: start, repo: tpope/vim-fugitive }
+    - { folder: start, repo: tpope/vim-rhubarb }
+    - { folder: start, repo: gpanders/editorconfig.nvim }
+    - { folder: start, repo: AndrewRadev/linediff.vim }
+    - { folder: start, repo: hynek/vim-python-pep8-indent }
+    - { folder: start, repo: jamessan/vim-gnupg }
+    - { folder: start, repo: L3MON4D3/LuaSnip }
+    - { folder: start, repo: liuchengxu/vista.vim }
+    - { folder: start, repo: janko-m/vim-test }
+    - { folder: start, repo: phaazon/hop.nvim }
+    - { folder: start, repo: nvim-lua/plenary.nvim }
+    - { folder: start, repo: vim-scripts/dbext.vim }
+    - { folder: start, repo: jbyuki/venn.nvim }
+    - { folder: start, repo: jbyuki/one-small-step-for-vimkind }
+    - { folder: opt, repo: nvim-treesitter/nvim-treesitter }
+    - { folder: opt, repo: nvim-treesitter/playground }
+    - { folder: opt, repo: saltstack/salt-vim }
+    - { folder: opt, repo: vmchale/dhall-vim }
+    - { folder: opt, repo: hashivim/vim-terraform }
+    - { folder: opt, repo: sirtaj/vim-openscad }
+    - { folder: opt, repo: diepm/vim-rest-console }
+
+- name: wait for git clone
+  async_status:
+    jid: "{{ item.ansible_job_id }}"
+  register: git_clone_jobs
+  until: git_clone_jobs.finished
+  loop: "{{ git_clone.results}}"
+
 - name: Checkout vim dev plugins
   git:
     repo: https://github.com/{{ item }}
@@ -46,6 +60,7 @@
     - mfussenegger/nvim-jdtls
     - mfussenegger/nvim-fzy
     - mfussenegger/nvim-lint
-    - mfussenegger/nvim-ts-hint-textobject
-- name: Update Remote Plugins
-  command: nvim +UpdateRemotePlugins +qa
+    - mfussenegger/nvim-dap
+    - mfussenegger/nvim-dap-python
+    - mfussenegger/nvim-treehopper
+    - mfussenegger/nvim-lsp-compl

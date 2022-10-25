@@ -30,6 +30,13 @@
     state: present
     update_cache: yes
 
+- name: install caffeine
+  become: true
+  apt:
+    name: caffeine
+    state: present
+    update_cache: yes
+
 # vale from aur is outdated
 - name: Get vale
   unarchive:
