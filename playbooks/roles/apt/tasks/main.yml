@@ -37,6 +37,13 @@
     state: present
     update_cache: yes
 
+- name: install khal
+  become: true
+  apt:
+    name: khal
+    state: present
+    update_cache: yes
+
 # vale from aur is outdated
 - name: Get vale
   unarchive:
