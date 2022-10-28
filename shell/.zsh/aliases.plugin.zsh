@@ -49,3 +49,6 @@ alias review='gh pr checkout $*'
 # docker compose
 alias dcd='docker compose down'
 alias dcu='docker up -d'
+
+# java test
+alias jtest='java org.junit.runner.JUnitCore $*'
