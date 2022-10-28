@@ -44,6 +44,13 @@
     state: present
     update_cache: yes
 
+- name: install junit4
+  become: true
+  apt:
+    name: junit4
+    state: present
+    update_cache: yes
+
 # vale from aur is outdated
 - name: Get vale
   unarchive:

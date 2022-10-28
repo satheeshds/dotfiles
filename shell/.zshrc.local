@@ -62,3 +62,7 @@ mp42gif() {
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
+
+# test class path
+export JUNIT_HOME=/usr/share/java
+export CLASSPATH="$JUNIT_HOME/junit4.jar:$JUNIT_HOME/hamcrest-core.jar:."
