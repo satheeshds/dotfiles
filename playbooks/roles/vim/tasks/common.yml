@@ -36,6 +36,7 @@
     - { folder: start, repo: vim-scripts/dbext.vim }
     - { folder: start, repo: jbyuki/venn.nvim }
     - { folder: start, repo: jbyuki/one-small-step-for-vimkind }
+    - { folder: start, repo: fatih/vim-go}
     - { folder: opt, repo: nvim-treesitter/nvim-treesitter }
     - { folder: opt, repo: nvim-treesitter/playground }
     - { folder: opt, repo: saltstack/salt-vim }

@@ -6,6 +6,12 @@ local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(
 local config = require('me.lsp.conf').mk_config()
 config.settings = {
   java = {
+    project = {
+      referencedLibraries = {
+        '/usr/share/java/junit4.jar'
+      }
+
+    };
     signatureHelp = { enabled = true };
     contentProvider = { preferred = 'fernflower' };
     completion = {

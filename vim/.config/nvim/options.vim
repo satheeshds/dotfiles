@@ -1,3 +1,4 @@
+set autowrite
 set shortmess+=wI
 
 let mapleader = ","
