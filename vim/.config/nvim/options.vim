@@ -20,7 +20,7 @@ set lazyredraw
 set ttyfast
 set scrolloff=3
 
-set updatetime=1000
+set updatetime=100
 
 set complete=.,w,b,u,U,i,d,t
 set completeopt=menuone,noinsert,noselect

@@ -112,10 +112,7 @@ map <C-n> :cnext<CR>
 map <C-p> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 
-" autocmd FileType go nmap <leader>b <Plug>(go-build)
-autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>t <Plug>(go-test)
-
+" common Go commands
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
   let l:file = expand('%')
@@ -126,5 +123,22 @@ function! s:build_go_files()
   endif
 endfunction
 
+" autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <leader>e <Plug>(go-rename)
+autocmd FileType go nmap <leader>i <Plug>(go-info)
+autocmd FileType go nmap <leader>s <Plug>(go-implements)
+" go navigation commands
+autocmd FileType go nmap <leader>ds <Plug>(go-def-split)
+autocmd FileType go nmap <leader>dv <Plug>(go-def-vertical)
+" go alternate command (corresponding test file)
+autocmd FileType go nmap <leader>ae <Plug>(go-alternate-edit)
+autocmd FileType go nmap <leader>av <Plug>(go-alternate-vertical)
+call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')

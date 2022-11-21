@@ -3,6 +3,7 @@
   pip:
     name:
       - pynvim
+      - neovim
       - neovim-remote
     virtualenv: ~/.virtualenvs/nvim
     virtualenv_command: /usr/bin/python3 -m venv
@@ -25,6 +26,7 @@
     - { folder: start, repo: tpope/vim-fugitive }
     - { folder: start, repo: tpope/vim-rhubarb }
     - { folder: start, repo: gpanders/editorconfig.nvim }
+    - { folder: start, repo: Shougo/deoplete.nvim}
     - { folder: start, repo: AndrewRadev/linediff.vim }
     - { folder: start, repo: AndrewRadev/splitjoin.vim }
     - { folder: start, repo: hynek/vim-python-pep8-indent }
@@ -38,6 +40,8 @@
     - { folder: start, repo: jbyuki/venn.nvim }
     - { folder: start, repo: jbyuki/one-small-step-for-vimkind }
     - { folder: start, repo: fatih/vim-go}
+    - { folder: start, repo: SirVer/ultisnips}
+    - { folder: start, repo: ctrlpvim/ctrlp.vim}
     - { folder: opt, repo: nvim-treesitter/nvim-treesitter }
     - { folder: opt, repo: nvim-treesitter/playground }
     - { folder: opt, repo: saltstack/salt-vim }

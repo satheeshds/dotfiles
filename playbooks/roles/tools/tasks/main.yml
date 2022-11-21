@@ -32,6 +32,49 @@
     state: present
     update_cache: yes
 
+- name: add docker apt-key
+  become: true
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+    keyring: /usr/share/keyrings/docker.gpg
+
+- name: add docker apt repository
+  become: true
+  apt_repository:
+    repo: 'deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable'
+    state: present
+    filename: docker
+    update_cache: yes
+
+- name: install docker-ce
+  become: true
+  apt:
+    name: docker-ce
+    state: present
+    update_cache: yes
+
+- name: install docker-ce-cli
+  become: true
+  apt:
+    name: docker-ce-cli
+    state: present
+    update_cache: yes
+
+- name: install containerd.io
+  become: true
+  apt:
+    name: containerd.io
+    state: present
+    update_cache: yes
+
+- name: install docker-compose-plugin
+  become: true
+  apt:
+    name: docker-compose-plugin
+    state: present
+    update_cache: yes
+
 # vale from aur is outdated
 - name: Get vale
   unarchive:
