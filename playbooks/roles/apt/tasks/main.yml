@@ -68,3 +68,11 @@
 
 - name: Install Jekyll
   command: gem install jekyll bundler
+
+- name: install graphviz
+  become: true
+  apt:
+    name: graphviz
+    state: present
+    update_cache: yes
+
