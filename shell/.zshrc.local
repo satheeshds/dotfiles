@@ -6,7 +6,7 @@ export JAVA_HOME="$HOME/.local/jdks/jdk-18+36/"
 export GRAALVM_HOME="$HOME/.local/jdks/graalvm-ce-java17-22.0.0.2/"
 export GOPATH="$HOME/workspace/code/go"
 
-export PATH=$PATH:$HOME/.local/share/npm/bin:$HOME/.luarocks/bin:$HOME/.local/jdks/jdk-18+36/bin
+export PATH=$PATH:$HOME/.local/share/npm/bin:$HOME/.luarocks/bin:$HOME/.local/jdks/jdk-18+36/bin:$GOPATH/bin:/usr/lib/go-1.18/pkg/tool/linux_amd64
 if [ -n "$NVIM" ]; then
   export VISUAL="nvr -cc split --remote-wait"
 else
